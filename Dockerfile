@@ -1,10 +1,14 @@
-FROM hypriot/rpi-python
-MAINTAINER Tonis Tobre <tobre@bitweb.ee>
+FROM resin/armv7hf-debian-qemu
+MAINTAINER Tõnis Tobre <tobre@bitweb.ee>
 
 VOLUME /config
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
+
+RUN [ "cross-build-start" ]
+
+RUN apt-get update && apt-get install -y python3
 
 RUN pip3 install --no-cache-dir colorlog cython
 
@@ -22,6 +26,8 @@ COPY requirements_all.txt requirements_all.txt
 # certifi breaks Debian based installs
 RUN pip3 install --no-cache-dir -r requirements_all.txt && pip3 uninstall -y certifi && \
     pip3 install mysqlclient psycopg2 uvloop
+
+RUN [ "cross-build-start" ]
 
 # Copy source
 COPY . .
