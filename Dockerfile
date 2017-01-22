@@ -8,7 +8,7 @@ RUN [ "cross-build-start" ]
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-RUN apt-get update && apt-get install -y python3
+RUN apt-get update && apt-get install -y python3 python-pip
 
 RUN pip3 install --no-cache-dir colorlog cython
 
