@@ -3,10 +3,10 @@ MAINTAINER Tõnis Tobre <tobre@bitweb.ee>
 
 VOLUME /config
 
+RUN [ "cross-build-start" ]
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-
-RUN [ "cross-build-start" ]
 
 RUN apt-get update && apt-get install -y python3
 
