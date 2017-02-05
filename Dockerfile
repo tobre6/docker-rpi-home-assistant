@@ -19,8 +19,8 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Copy build scripts
-COPY virtualization/Docker/ virtualization/Docker/
-RUN virtualization/Docker/setup_docker_prereqs
+COPY home-assistant/virtualization/Docker/ virtualization/Docker/
+RUN home-assistant/virtualization/Docker/setup_docker_prereqs
 
 # Install hass component dependencies
 COPY requirements_all.txt requirements_all.txt
@@ -28,7 +28,7 @@ RUN pip3 install --no-cache-dir -r requirements_all.txt && \
     pip3 install --no-cache-dir mysqlclient psycopg2 uvloop
 
 # Copy source
-COPY . .
+COPY home-assistant .
 
 RUN [ "cross-build-end" ]
 
