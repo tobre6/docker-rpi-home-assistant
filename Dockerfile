@@ -2,7 +2,7 @@ FROM resin/armv7hf-debian-qemu
 MAINTAINER Tõnis Tobre <tobre@bitweb.ee>
 
 RUN [ "cross-build-start" ]
-RUY apt-get update
+RUN apt-get update
 RUN apt-get install -y python3-pip
 
 RUN [ "cross-build-end" ]
