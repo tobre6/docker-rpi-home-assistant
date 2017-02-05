@@ -5,8 +5,6 @@ RUN [ "cross-build-start" ]
 RUN apt-get update
 RUN apt-get install -y python3-pip
 
-RUN [ "cross-build-end" ]
-
 # Uncomment any of the following lines to disable the installation.
 #ENV INSTALL_TELLSTICK no
 #ENV INSTALL_OPENALPR no
@@ -31,5 +29,7 @@ RUN pip3 install --no-cache-dir -r requirements_all.txt && \
 
 # Copy source
 COPY . .
+
+RUN [ "cross-build-end" ]
 
 CMD [ "python", "-m", "homeassistant", "--config", "/config" ]
