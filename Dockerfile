@@ -3,7 +3,7 @@ MAINTAINER Tõnis Tobre <tobre@bitweb.ee>
 
 RUN [ "cross-build-start" ]
 RUN apt-get update
-RUN apt-get install -y python3-pip
+RUN apt-get install -y --no-install-recommends python3-pip wget
 
 VOLUME /config
 
