@@ -20,7 +20,7 @@ WORKDIR /usr/src/app
 
 # Copy build scripts
 COPY home-assistant/virtualization/Docker/ virtualization/Docker/
-RUN home-assistant/virtualization/Docker/setup_docker_prereqs
+RUN virtualization/Docker/setup_docker_prereqs
 
 # Install hass component dependencies
 COPY requirements_all.txt requirements_all.txt
