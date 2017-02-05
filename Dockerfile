@@ -3,10 +3,19 @@ MAINTAINER Tõnis Tobre <tobre@bitweb.ee>
 
 RUN [ "cross-build-start" ]
 
+# ensure local python is preferred over distribution python
+ENV PATH /usr/local/bin:$PATH
+
+# http://bugs.python.org/issue19846
+# > At the moment, setting "LANG=C" on a Linux system *fundamentally breaks Python 3*, and that's not OK.
+ENV LANG C.UTF-8
+
 # runtime dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-		tcl \
-		tk \
+		ca-certificates \
+		libgdbm3 \
+		libsqlite3-0 \
+		libssl1.0.0 \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV GPG_KEY 97FC712E4C024BBEA48A61ED3A5CA953F73C700D
@@ -17,8 +26,21 @@ ENV PYTHON_PIP_VERSION 9.0.1
 
 RUN set -ex \
 	&& buildDeps=' \
+		gcc \
+		libbz2-dev \
+		libc6-dev \
+		libgdbm-dev \
+		liblzma-dev \
+		libncurses-dev \
+		libreadline-dev \
+		libsqlite3-dev \
+		libssl-dev \
+		make \
 		tcl-dev \
 		tk-dev \
+		wget \
+		xz-utils \
+		zlib1g-dev \
 	' \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
 	\
@@ -70,7 +92,6 @@ RUN cd /usr/local/bin \
 	&& ln -s pydoc3 pydoc \
 	&& ln -s python3 python \
 	&& ln -s python3-config python-config
-
 
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends wget git
