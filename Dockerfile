@@ -11,7 +11,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Copy build scripts
-COPY home-assistant/script/setup_docker_prereqs script/build_python_openzwave script/build_libcec script/install_phantomjs script/
+COPY home-assistant/script/setup_docker_prereqs home-assistant/script/build_python_openzwave home-assistant/script/build_libcec home-assistant/script/install_phantomjs script/
 RUN script/setup_docker_prereqs
 
 # Install hass component dependencies
