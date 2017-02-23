@@ -1,6 +1,8 @@
 FROM resin/armv7hf-debian-qemu
 MAINTAINER Tõnis Tobre <tobre@bitweb.ee>
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN [ "cross-build-start" ]
 
 # ensure local python is preferred over distribution python
